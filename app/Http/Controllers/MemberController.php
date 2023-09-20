@@ -15,7 +15,6 @@ class MemberController extends Controller
      */
     public function index()
     {
-
         return MemberResource::collection(Member::all());
     }
 
@@ -40,7 +39,6 @@ class MemberController extends Controller
             'phone_number'=>'required|string|digits:10'
         ]);
 
-
         $member_name = $request->input('name');
         $member_surname = $request->input('surname');
         $member_phone_number = $request->input('phone_number');
@@ -50,7 +48,7 @@ class MemberController extends Controller
             'name'=>$member_name,
             'surname'=>$member_surname,
             'avatar'=>$member_avatar,
-            'phone_number'=>$member_phone_number
+            'phone_number'=>"+7".$member_phone_number
         ]);
 
         $member->save();
@@ -62,7 +60,6 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-
         return new MemberResource($member);
     }
 
@@ -96,7 +93,7 @@ class MemberController extends Controller
             'name'=>$member_name,
             'surname'=>$member_surname,
             'avatar'=>$member_avatar,
-            'phone_number'=>$member_phone_number
+            'phone_number'=>"+7".$member_phone_number
         ]);
 
         return response()->json([

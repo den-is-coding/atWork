@@ -1,66 +1,239 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+# About AtWorkProject
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project implements a Rest api with CRUD operations for members, companies and comments models.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Technology stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Programming language: [PHP 8.2](https://www.php.net/releases/8.2/ru.php)
+- Framework: [Laravel 10](https://laravel.com/docs/10.x/releases)
+- Database: [MySQL 8.0.34](https://www.mysql.com/)
+- Dependency management: [Composer 2.6.3](https://getcomposer.org/)
+- Test API: [Postman 10.18.3](https://www.postman.com/)
 
-## Learning Laravel
+# Project structure
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Database settings
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+All database settings are set in the file .env 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Models
+All model files are located in the directory "app/Models".
 
-## Laravel Sponsors
+They contain fields of models and functions for creating relations between models.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Migrations
 
-### Premium Partners
+All migration files are located in the directory "database/migrations".
+    
+## Controllers
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+All controllers' files are located in the directory "app/Http/Controllers".
+The files contain methods for implementing CRUD operations with data and their validation.
 
-## Contributing
+## Routes
+All routes are specified in the file "routes/api.php".
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Postman collection
 
-## Code of Conduct
+File "REST_APT.postman_collection.json" with Postman collection for testing API is located project Root directory.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Installation and launching server
 
-## Security Vulnerabilities
+1. Install MySQL and create database
+2. Install PHP 8.2
+3. Install Composer
+4. Migrate database with command "php artisan migrate" in Terminal
+5. Edit database variables\
+   DB_CONNECTION=mysql\
+   DB_HOST=\
+   DB_PORT=\
+   DB_DATABASE=\
+   DB_USERNAME=\
+   DB_PASSWORD=\
+   in .env to configure database connection
+6. Launch server with command "php artisan serve" in terminal
+7. Install Postman for testing API
+8. import collection "REST_APT.postman_collection.json"
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Features
 
-## License
+- Database with tables for Members, Companies, Comments relations between models.
+- CRUD operations for all models
+- Get company comments by ID
+- validate data for all models
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# API Endpoints
+
+### **To test the API, there is a Postman collection in the root directory of the project.**
+
+## Members
+
+### GET
+
+http://localhost:8000/api/members
+
+Returns all records from the members' database.\
+Does not accept any parameters.\
+Implemented using the function index() in MemberController.
+
+http://localhost:8000/api/members/id
+
+Returns record with field "id" = id from the members' database.\
+Does not accept any parameters.\
+Implemented using the function show() in MemberController.
+
+### POST
+
+http://localhost:8000/api/members
+
+Add record to the database.\
+Returns data of the added record and Response Code.\
+Requires the following parameters:
+- name
+- surname
+- phone_number
+- avatar
+
+**All parameters accept data corresponding to validation rules.**\
+Implemented using the function store() in MemberController.
+
+### PUT
+
+http://localhost:8000/api/members/id
+
+Change data of the record with "id" = id in the database.\
+Returns data of the added record and Response Code.\
+Requires the following parameters:
+- name
+- surname
+- phone_number
+- avatar
+
+**All parameters accept data corresponding to validation rules.**\
+Implemented using the function update() in MemberController.
+
+### DELETE
+
+http://localhost:8000/api/members/id
+
+Delete record with "id" = id in the database.\
+Returns Response Code.\
+Implemented using the function destroy() in MemberController.
+
+
+## Companies
+
+### GET
+
+http://localhost:8000/api/companies
+
+Returns all records from the companies' database.\
+Does not accept any parameters.\
+Implemented using the function index() in CompanyController.
+
+http://localhost:8000/api/companies/id
+
+Returns record with field "id" = id from the companies' database.\
+Does not accept any parameters.\
+Implemented using the function show() in CompanyController.
+
+### POST
+
+http://localhost:8000/api/companies
+
+Add record to the database.\
+Returns data of the added record and Response Code.\
+Requires the following parameters:
+- description
+- title
+- logo
+
+**All parameters accept data corresponding to validation rules.**\
+Implemented using the function store() in CompanyController.
+
+### PUT
+
+http://localhost:8000/api/companies/id
+
+Change data of the record with "id" = id in the database.\
+Returns data of the added record and Response Code.\
+Requires the following parameters:
+- description
+- title
+- logo
+
+**All parameters accept data corresponding to validation rules.**\
+Implemented using the function update() in CompanyController.
+
+### DELETE
+
+http://localhost:8000/api/companies/id
+
+Delete record with "id" = id in the database.\
+Returns Response Code.\
+Implemented using the function destroy() in CompanyController.
+
+## Comments
+
+http://localhost:8000/api/comments
+
+### GET
+
+http://localhost:8000/api/comments
+
+Returns all records from the comments' database.\
+Implemented using the function index() in CommentController.
+
+http://localhost:8000/api/comments/id
+
+Returns record with field "id" = id from the comments' database.\
+Does not accept any parameters.\
+Implemented using the function show() in CommentController.
+
+http://localhost:8000/api/comments?company_id=1
+
+Accept parameter "company_id" and returns all records in database with "company_id" = company_id.\
+
+
+### POST
+
+http://localhost:8000/api/comments
+
+Add record to the database.\
+Returns data of the added record and Response Code.\
+Requires the following parameters:
+- content
+- score
+- member_id
+- company_id
+
+**All parameters accept data corresponding to validation rules.**\
+Implemented using the function store() in CommentController.
+
+### PUT
+
+http://localhost:8000/api/comments/id
+
+Change data of the record with "id" = id in the database.\
+Returns data of the added record and Response Code.\
+Requires the following parameters:
+- content
+- score
+- member_id
+- company_id
+
+**All parameters accept data corresponding to validation rules.**\
+Implemented using the function update() in CommentController.
+
+### DELETE
+
+http://localhost:8000/api/comments/id
+
+Delete record with "id" = id in the database.\
+Returns Response Code.\
+Implemented using the function destroy() in CommentController.
+
+
+

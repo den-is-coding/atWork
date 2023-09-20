@@ -12,20 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 class CommentController extends Controller
 {
 
-//    public function (Request $request) {
-//
-//        $data = $this->validate($request, [
-//            'content' => 'string|min:150 | max: 550',
-//            'score' => 'integer|between:1,10',
-//            'member_id' => 'required|exists:members,id',
-//            'company_id' => 'required|exists:companies,id',
-//        ]);
-//        $filter = app()->make(CommentFilter::class,['queryParams'=> array_filter($data)]);
-//
-//        $comments = Comment::
-//    }
-
-
     /**
      * Display a listing of the resource.
      */
