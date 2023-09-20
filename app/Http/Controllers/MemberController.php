@@ -105,9 +105,9 @@ class MemberController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company $company)
+    public function destroy(Member $member)
     {
-        $company ->delete();
+        $member ->delete();
         return response()->json(null, 204);
     }
 }

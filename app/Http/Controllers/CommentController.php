@@ -91,8 +91,8 @@ class CommentController extends Controller
         ]);
 
 
-        $comment_content = $request->input('title');
-        $comment_score = $request->input('description');
+        $comment_content = $request->input('content');
+        $comment_score = $request->input('score');
         $comment_member_id = $request->input('member_id');
         $comment_company_id = $request->input('company_id');
 
